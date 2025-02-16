@@ -1,0 +1,8 @@
+streamlit==1.17.0  # Specify the version you are using
+boto3==1.24.12     # Specify the version you are using
+python-dotenv==0.20.0  # Specify the version you are using
+langchain==0.1.36  # Specify the version you are using
+langchain-chroma==0.0.4  # Specify the version you are using
+langchain-community==0.1.16  # Check your version
+langchain-openai==0.0.37  # Check your version
+chromadb==0.2.7  # Check your version
