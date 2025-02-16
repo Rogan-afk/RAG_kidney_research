@@ -1,10 +1,20 @@
-unstructured[pdf]==0.4.3     # Specify the latest suitable version you have
-Pillow==9.4.0                 # As per your current installation
-lxml==4.9.1                   # As per your current installation
-chromadb==0.4.1               # Latest or known version
-tiktoken==0.3.1               # Latest or known version
-langchain==0.0.139            # Latest suitable version
-langchain-openai==0.0.37      # Latest suitable version
-langchain-community==0.1.16    # Latest suitable version
-langchain-groq==0.0.1         # Latest suitable version
-python-dotenv==0.20.0        # Latest suitable version 
+unstructured[pdf]==0.4.3
+Pillow==9.4.0
+lxml==4.9.1
+chromadb==0.4.1
+tiktoken==0.3.1
+langchain==0.0.139
+langchain-openai==0.1.6  # Adjusted to a valid available version
+langchain-community==0.1.16
+langchain-groq==0.0.1
+python-dotenv==0.20.0
+numpy>=1.21.0
+pandas>=1.3.0
+scipy>=1.7.0
+requests>=2.26.0
+streamlit>=1.12.0
+openai>=0.28.1
+uvicorn>=0.17.6
+fastapi>=0.70.0
+torch>=2.0.0
+transformers>=4.25.0
