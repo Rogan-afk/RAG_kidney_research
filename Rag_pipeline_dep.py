@@ -6,6 +6,9 @@ import streamlit as st
 import base64
 from base64 import b64decode
 import uuid
+import sysS
+import pysqlite3
+sys.modules['sqlite3'] = sys.modules["pysqlite3"]
 from langchain_chroma import Chroma  # Updated import for Chroma
 from langchain.storage import InMemoryStore
 from langchain_core.documents import Document
@@ -17,6 +20,9 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
+
+
+
 import chromadb  # Importing chromadb to access its functionalities
 
 # Load environment variables
