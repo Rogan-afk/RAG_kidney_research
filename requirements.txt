@@ -1,6 +1,6 @@
 python_dotenv
 langchain_chroma
 langchain 
-"unstructured[all-docs]" pillow lxml pillow
+pillow lxml 
 chromadb tiktoken
 scipy>=1.7.0
