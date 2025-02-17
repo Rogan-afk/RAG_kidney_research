@@ -5,7 +5,7 @@ python-dotenv           # For loading environment variables from .env files
 unstructured[pdf]       # For handling unstructured document types including PDFs
 Pillow                  # For image handling
 lxml                    # For XML processing
-chromadb                # For Chroma database functionality
+chromadb[duckdb]==0.4.1               # For Chroma database functionality
 tiktoken                # For tokenization with OpenAI
 langchain               # Main library for the LangChain framework
 langchain-community      # Community extensions and utilities for LangChain
