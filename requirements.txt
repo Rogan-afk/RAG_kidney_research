@@ -1,6 +1,13 @@
-python_dotenv
-langchain_chroma
-langchain 
-pillow lxml 
-chromadb tiktoken
-scipy>=1.7.0
+# Dependencies for your Streamlit application and related libraries
+streamlit               # For building the web application
+boto3                   # For AWS interactions
+python-dotenv           # For loading environment variables from .env files
+unstructured[pdf]       # For handling unstructured document types including PDFs
+Pillow                  # For image handling
+lxml                    # For XML processing
+chromadb                # For Chroma database functionality
+tiktoken                # For tokenization with OpenAI
+langchain               # Main library for the LangChain framework
+langchain-community      # Community extensions and utilities for LangChain
+langchain-openai        # LangChain integration with OpenAI models
+langchain-groq          # Adding support for Groq functionalities in LangChain
