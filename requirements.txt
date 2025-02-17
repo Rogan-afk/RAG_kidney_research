@@ -12,4 +12,3 @@ langchain-community      # Community extensions and utilities for LangChain
 langchain-openai        # LangChain integration with OpenAI models
 langchain-groq          # Adding support for Groq functionalities in LangChain
 langchain_chroma
-pysqlite3
