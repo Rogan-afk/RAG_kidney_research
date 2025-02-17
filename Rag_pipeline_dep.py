@@ -7,8 +7,7 @@ import base64
 from base64 import b64decode
 import uuid
 import sys
-import pysqlite3
-sys.modules['sqlite3'] = sys.modules["pysqlite3"]
+
 from langchain_chroma import Chroma  # Updated import for Chroma
 from langchain.storage import InMemoryStore
 from langchain_core.documents import Document
