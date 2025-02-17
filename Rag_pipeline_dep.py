@@ -190,7 +190,8 @@ if st.button("Submit"):
             # Invoke the RAG chain
             response = chain_with_sources.invoke(user_input)
 
-      
+            if response is not None:
+                pass
 
             # Display the response in a structured format
             st.write("### Response:")
@@ -210,7 +211,7 @@ if st.button("Submit"):
             for text in response['context']['texts']:
                 st.markdown(f"```markdown\n{text.text}\n```")  # Display context text as code block
                 st.write("Page number:", text.metadata.page_number)  # Display page number
-    else:
+        else:
             st.warning("No valid response returned from RAG chain.")
     else:
         st.warning("Please enter a query.")
