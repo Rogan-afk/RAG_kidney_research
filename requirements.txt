@@ -1,21 +1,21 @@
-# Document processing and image handling
-unstructured[all-docs]==0.4.3
+# Document processing & parsing
+unstructured==0.4.3
 pillow==9.4.0
 lxml==4.9.1
 
-# Vector store and embeddings
-chromadb==0.4.1
+# Vector store & embeddings
+# (If a newer version of chromadb that supports pydantic 2 is available, this specifier will let pip choose it.)
+chromadb>=0.4.2
 tiktoken>=0.7
 
-# LangChain ecosystem (without Groq)
+# LangChain ecosystem (using modern releases that require pydantic 2)
 langchain>=0.3.18,<1.0.0
 langchain-community>=0.3.17,<1.0.0
 langchain-openai>=0.3.6,<1.0.0
+# Note: langchain-groq has been omitted because it depends on an old langchain-core (<0.2)
 
-# Environment variables management
+# Environment & utility packages
 python-dotenv==0.20.0
-
-# Other common packages (add any you need)
 streamlit>=1.12.0
 boto3>=1.26.0
 openai>=1.0.0
