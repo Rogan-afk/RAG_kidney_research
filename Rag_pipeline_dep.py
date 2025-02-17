@@ -190,7 +190,7 @@ if st.button("Submit"):
             # Invoke the RAG chain
             response = chain_with_sources.invoke(user_input)
 
-        if response is not None:
+if response is not None:
     # Clear system cache for chromadb after each invocation
     # chromadb.api.client.SharedSystemClient.clear_system_cache()
     print("Working...")
