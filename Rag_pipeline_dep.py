@@ -190,7 +190,7 @@ if st.button("Submit"):
 
         if response is not None:
             #chromadb.api.client.SharedSystemClient.clear_system_cache()  # Clear cache after each query
-            print(Working...)
+            print("Working...")
             
             # Display the response
             st.write("### Response:")
