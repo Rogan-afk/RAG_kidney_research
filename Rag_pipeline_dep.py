@@ -193,7 +193,7 @@ if st.button("Submit"):
         if response is not None:
             # Clear system cache for chromadb after each invocation
             # chromadb.api.client.SharedSystemClient.clear_system_cache()
-                print("Working...")
+            print("Working...")
 
             # Display the response in a structured format
             st.write("### Response:")
