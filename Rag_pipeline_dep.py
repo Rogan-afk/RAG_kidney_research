@@ -178,7 +178,7 @@ st.title("RAG Pipeline for Research Related to Renal Diseases")
 
 # Welcome prompt
 st.markdown("### Welcome!")
-st.write("This RAG pipeline responds to queries related to research on renal diseases. For complete context, scroll down.")
+st.write("This RAG pipeline responds to queries related to research on renal diseases. For complete context, scroll down. Click on the submit button twice to see full context if not available")
 
 # Input box for user query
 user_input = st.text_input("Type your query here:")
