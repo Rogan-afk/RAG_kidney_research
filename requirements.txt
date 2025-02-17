@@ -2,10 +2,10 @@ unstructured[pdf]==0.4.3
 Pillow==9.4.0
 lxml==4.9.1
 chromadb==0.4.1
-tiktoken>=0.7  # Match the requirement for langchain-openai
-langchain==0.0.139
+tiktoken>=0.7
+langchain>=0.3.18,<1.0.0
 langchain-openai==0.3.6
-langchain-community==0.3.17  # Use the latest compatible version
+langchain-community==0.3.17
 langchain-groq==0.0.1
 python-dotenv==0.20.0
 streamlit>=1.12.0
