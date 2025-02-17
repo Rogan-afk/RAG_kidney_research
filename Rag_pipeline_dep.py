@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import pickle
 import streamlit as st
 import base64
-
+from base64 import b64decode
 import uuid
 from langchain_chroma import Chroma  # Updated import for Chroma
 from langchain.storage import InMemoryStore
@@ -22,12 +22,10 @@ import chromadb  # Importing chromadb to access its functionalities
 # Load environment variables
 load_dotenv()
 
-# Set environment variables
 S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME")
 if S3_BUCKET_NAME is None:
     raise ValueError("S3_BUCKET_NAME is not defined in the environment variables.")
 
-# Set API keys
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
 os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
@@ -61,8 +59,14 @@ def load_cached_data():
     data = []
     for file in files:
         local_path = os.path.join(local_cache_dir, file)
+        
+        # Only download if the file does not exist locally
+        if not os.path.exists(local_path):
+            print(f"Downloading {file} from S3...")
+            download_pickle_from_s3(file, local_path)
+        
         data.append(download_pickle_from_s3(file, local_path))
-    
+
     if None in data:
         print("One or more files failed to load.")
         return None
@@ -73,7 +77,7 @@ def load_cached_data():
 # Attempt to load the cached data
 cached_data = load_cached_data()
 
-# Check cached data and initialize variables
+# Initialize variables based on cache data load
 tables, texts, images, text_summaries, table_summaries, image_summaries = (
     ([], [], [], [], [], []) if cached_data is None else cached_data
 )
@@ -114,7 +118,7 @@ def parse_docs(docs):
     text = []
     for doc in docs:
         try:
-            b64decode(doc)
+            base64.b64decode(doc)
             b64.append(doc)
         except Exception as e:
             text.append(doc)
@@ -168,7 +172,7 @@ st.title("RAG Pipeline for Research Related to Renal Diseases")
 
 # Welcome prompt
 st.markdown("### Welcome!")
-st.write("This RAG pipeline responds to queries related to research on renal diseases. For complete context, scroll down.")
+st.write("This RAG pipeline responds to queries related to research on renal diseases. For complete context, scroll down. Double click submit if context does not appear")
 
 # Input box for user query
 user_input = st.text_input("Type your query here:")
@@ -181,20 +185,16 @@ def display_base64_image(base64_code):
 
 if st.button("Submit"):
     if user_input:
-        # Show loading indicator with animation
         with st.spinner("Processing your query... Please wait..."):
-            # Invoke the RAG chain
             response = chain_with_sources.invoke(user_input)
 
         if response is not None:
-            # Clear system cache for chromadb after each invocation
-            # chromadb.api.client.SharedSystemClient.clear_system_cache()
-            print("Working...")
-
-            # Display the response in a structured format
+            #chromadb.api.client.SharedSystemClient.clear_system_cache()  # Clear cache after each query
+            print(Working...)
+            
+            # Display the response
             st.write("### Response:")
-            response_content = f"```markdown\n{response['response']}\n```"
-            st.markdown(response_content)
+            st.markdown(f"```{response['response']}```")
 
             # Display context images if they exist
             st.write("### Context Images:")
@@ -204,10 +204,10 @@ if st.button("Submit"):
             else:
                 st.write("No context images available.")
 
-            # Display the context text and page numbers
+            # Display the context as code blocks
             st.write("### Context:")
             for text in response['context']['texts']:
-                st.markdown(f"```markdown\n{text.text}\n```")  # Display context text as code block
+                st.markdown(f"```{text.text}```")  # Display context text as code block
                 st.write("Page number:", text.metadata.page_number)  # Display page number
         else:
             st.warning("No valid response returned from RAG chain.")
