@@ -191,29 +191,26 @@ if st.button("Submit"):
             response = chain_with_sources.invoke(user_input)
 
         if response is not None:
-            # Clear system cache for chromadb after each invocation
-            # chromadb.api.client.SharedSystemClient.clear_system_cache()
-            print("Working...")
+    # Clear system cache for chromadb after each invocation
+    # chromadb.api.client.SharedSystemClient.clear_system_cache()
+    print("Working...")
 
-            # Display the response in a structured format
-            st.write("### Response:")
-            response_content = f"```markdown\n{response['response']}\n```"
-            st.markdown(response_content)
+    # Display the response in a structured format
+    st.write("### Response:")
+    response_content = f"```markdown\n{response['response']}\n```"
+    st.markdown(response_content)
 
-            # Display context images if they exist
-            st.write("### Context Images:")
-            if response['context']['images']:
-                for image in response['context']['images']:
-                    display_base64_image(image)
-            else:
-                st.write("No context images available.")
-
-            # Display the context text and page numbers
-            st.write("### Context:")
-            for text in response['context']['texts']:
-                st.markdown(f"```markdown\n{text.text}\n```")  # Display context text as code block
-                st.write("Page number:", text.metadata.page_number)  # Display page number
-        else:
-            st.warning("No valid response returned from RAG chain.")
+    # Display context images if they exist
+    st.write("### Context Images:")
+    if response['context']['images']:
+        for image in response['context']['images']:
+            display_base64_image(image)
     else:
-        st.warning("Please enter a query.")
+        st.write("No context images available.")
+
+    # Display the context text and page numbers
+    st.write("### Context:")
+    for text in response['context']['texts']:
+        st.markdown(f"```markdown\n{text.text}\n```")  # Display context text as code block
+        st.write("Page number:", text.metadata.page_number)  # Display page number
+
