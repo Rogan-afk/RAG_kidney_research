@@ -210,7 +210,7 @@ if st.button("Submit"):
             for text in response['context']['texts']:
                 st.markdown(f"```markdown\n{text.text}\n```")  # Display context text as code block
                 st.write("Page number:", text.metadata.page_number)  # Display page number
-        else:
+    else:
             st.warning("No valid response returned from RAG chain.")
     else:
         st.warning("Please enter a query.")
