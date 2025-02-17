@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 import pickle
 import streamlit as st
 import base64
-from base64 import b64decode
 import uuid
 import sys
 
@@ -173,7 +172,7 @@ st.title("RAG Pipeline for Research Related to Renal Diseases")
 
 # Welcome prompt
 st.markdown("### Welcome!")
-st.write("This RAG pipeline responds to queries related to research on renal diseases. For complete context, scroll down.")
+st.write("This RAG pipeline responds to queries related to research on renal diseases. For complete context, scroll down. Double click submit to see context")
 
 # Input box for user query
 user_input = st.text_input("Type your query here:")
