@@ -1,6 +1,6 @@
 python_dotenv
 langchain_chroma
-langchain langchain-community langchain-openai langchain-groq
+langchain 
 "unstructured[all-docs]" pillow lxml pillow
 chromadb tiktoken
 scipy>=1.7.0
