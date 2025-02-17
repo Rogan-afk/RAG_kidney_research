@@ -5,7 +5,7 @@ import pickle
 from io import BytesIO
 import streamlit as st
 import base64
-import numpy as np
+    
 import uuid
 from langchain_chroma import Chroma  # Updated import for Chroma
 from langchain.storage import InMemoryStore
@@ -22,25 +22,15 @@ import chromadb  # Importing chromadb to access its functionalities
 # Load environment variables
 load_dotenv()
 
-#For streamlit deployment
-S3_BUCKET_NAME = st.secrets["S3_BUCKET_NAME"]
-os.environ["AWS_ACCESS_KEY_ID"] = st.secrets["AWS_ACCESS_KEY_ID"]
-os.environ["AWS_SECRET_ACCESS_KEY"] = st.secrets["AWS_SECRET_ACCESS_KEY"]
-os.environ["AWS_REGION"] = st.secrets["AWS_REGION"]
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
-os.environ["LANGCHAIN_API_KEY"] = st.secrets["LANGCHAIN_API_KEY"]
-os.environ["LANGCHAIN_TRACING_V2"] = st.secrets["LANGCHAIN_TRACING_V2"]
-
 # Set environment variables
 S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME")
 if S3_BUCKET_NAME is None:
     raise ValueError("S3_BUCKET_NAME is not defined in the environment variables.")
 
-# os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-# os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
-# os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
-# os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2")
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
+os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
+os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2")
 
 # Initialize S3 client
 s3_client = boto3.client(
@@ -196,7 +186,9 @@ if st.button("Submit"):
             # Invoke the RAG chain
             response = chain_with_sources.invoke(user_input)
 
-     
+        # if response is not None:
+        #     # Clear system cache for chromadb after each invocation
+        #     chromadb.api.client.SharedSystemClient.clear_system_cache()
 
             # Display the response
             st.write("### Response:")
