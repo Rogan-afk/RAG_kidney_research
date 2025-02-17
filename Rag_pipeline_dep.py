@@ -6,7 +6,7 @@ import streamlit as st
 import base64
 from base64 import b64decode
 import uuid
-import sysS
+import sys
 import pysqlite3
 sys.modules['sqlite3'] = sys.modules["pysqlite3"]
 from langchain_chroma import Chroma  # Updated import for Chroma
