@@ -1,13 +1,21 @@
-unstructured[pdf]==0.4.3
-Pillow==9.4.0
+# Document processing and image handling
+unstructured[all-docs]==0.4.3
+pillow==9.4.0
 lxml==4.9.1
+
+# Vector store and embeddings
 chromadb==0.4.1
 tiktoken>=0.7
+
+# LangChain ecosystem (without Groq)
 langchain>=0.3.18,<1.0.0
-langchain-openai==0.3.6
-langchain-community==0.3.17
-langchain-groq==0.0.1
+langchain-community>=0.3.17,<1.0.0
+langchain-openai>=0.3.6,<1.0.0
+
+# Environment variables management
 python-dotenv==0.20.0
+
+# Other common packages (add any you need)
 streamlit>=1.12.0
 boto3>=1.26.0
 openai>=1.0.0
