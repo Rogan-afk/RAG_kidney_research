@@ -178,36 +178,27 @@ def display_base64_image(base64_code):
     if base64_code:
         formatted_image = f"data:image/jpeg;base64,{base64_code}"  # Ensure the image format is correct
         st.image(formatted_image, caption="Context Image", use_column_width=True)
-
 if st.button("Submit"):
     if user_input:
-        # Show loading indicator with animation
         with st.spinner("Processing your query... Please wait..."):
-            # Invoke the RAG chain
             response = chain_with_sources.invoke(user_input)
 
-        # if response is not None:
-        #     # Clear system cache for chromadb after each invocation
-        #     chromadb.api.client.SharedSystemClient.clear_system_cache()
-
-            # Display the response
+        if response is not None:
+            chromadb.api.client.SharedSystemClient.clear_system_cache()
             st.write("### Response:")
             st.markdown(response['response'], unsafe_allow_html=True)
-
-            # Display context images if they exist
             st.write("### Context Images:")
             if response['context']['images']:
                 for image in response['context']['images']:
                     display_base64_image(image)
             else:
                 st.write("No context images available.")
-
-            # Display the context text and page numbers
             st.write("### Context:")
             for text in response['context']['texts']:
-                st.write(text.text)  # Display context text
-                st.write("Page number:", text.metadata.page_number)  # Display page number
+                st.write(text.text)
+                st.write("Page number:", text.metadata.page_number)
         else:
             st.warning("No valid response returned from RAG chain.")
     else:
         st.warning("Please enter a query.")
+
